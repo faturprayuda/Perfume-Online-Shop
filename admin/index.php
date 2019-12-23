@@ -3,7 +3,7 @@ session_start();
 require "../connection.php";
 require 'function.php';
 
-if (!isset($_SESSION["submit"])) {
+if (!isset($_SESSION["admin"])) {
   header("Location: login.php");
   exit;
 } else {

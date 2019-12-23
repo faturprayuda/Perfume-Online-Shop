@@ -1,27 +1,43 @@
 <?php
 session_start();
-require "../connection.php";
 require 'function.php';
 
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
-} else {
-    $user = $_SESSION["email"];
+}
 
-    $result = mysqli_query($con, "SELECT nama_admin FROM admin WHERE email_admin = '$user'");
+// ambil data di url
+$id = $_GET["id"];
+// query data mahasiswa berdasarkan id
+$user = query("SELECT * FROM users WHERE id = $id")[0];
 
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        $name = $row["nama_admin"];
+
+//cek tombol submit
+if (isset($_POST["submit"])) {
+
+    //cek update data / debugging mysql
+    if (ubah($_POST) > 0) {
+        echo "
+        <script> 
+            alert('data berhasil diubah!');
+            document.location.href = 'user.php';
+        </script>
+        ";
+    } else {
+        echo "
+        <script> 
+            alert('data gagal diubah!');
+            document.location.href = 'user.php';
+        </script>
+        ";
     }
 }
 
-$users = query("SELECT * FROM users");
-
-
-
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -392,41 +408,56 @@ $users = query("SELECT * FROM users");
             </section>
 
             <!-- Main content -->
-            <div class="content">
-                <div class="contaier">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">No Telpon</th>
-                                <th scope="col">Kota</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($users as $user) : ?>
-                                <tr>
-                                    <td><?= $i ?></td>
-                                    <td><?= $user["name"]; ?></td>
-                                    <td><?= $user["email"]; ?></td>
-                                    <td><?= $user["contact"]; ?></td>
-                                    <td><?= $user["city"]; ?></td>
-                                    <td><?= $user["address"]; ?></td>
-                                    <td>
-                                        <a href="ubah.php?id=<?= $user["id"]; ?>">ubah</a> |
-                                        <a href="hapus.php?id=<?= $user["id"]; ?>" onclick=" return confirm('yakin dihapus?'); ">hapus</a>
-                                    </td>
-                                </tr>
-                                <?php $i++ ?>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Quick Example</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <form role="form" action="" method="POST">
+                                <input type="hidden" name="id" value="<?= $user["id"]; ?>">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" class="form-control" id="nama" placeholder="Enter Name" name="nama" value="<?= $user["name"]; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" value="<?= $user["email"]; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telp">Telphone</label>
+                                        <input type="text" class="form-control" id="telp" placeholder="Telphone" name="telp" value="<?= $user["contact"]; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">Address</label>
+                                        <input type="text" class="form-control" id="city" placeholder="City" name="city" value="<?= $user["city"]; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat">Address</label>
+                                        <input type="text" class="form-control" id="alamat" placeholder="Address" name="alamat" value="<?= $user["address"]; ?>">
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box -->
+                        <!-- stop sampe sini -->
+
+                    </div>
+                    <!--/.col (left) -->
                 </div>
-            </div>
+                <!-- /.row -->
+            </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

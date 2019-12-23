@@ -48,7 +48,71 @@ function registrasi($data)
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
     // insert userbaru ke db
-    mysqli_query($con, "INSERT INTO admin VALUES('', '$email', '$pass', '$name', '$tlp', '$address')");
+    mysqli_query($con, "INSERT INTO admin VALUES('', '$email', '$pass', '$name', '$tlp', '$address', 'admin')");
 
+    return mysqli_affected_rows($con);
+}
+
+// hapus user
+function hapus($id)
+{
+    global $con;
+    mysqli_query($con, "DELETE FROM users WHERE id = $id");
+    return mysqli_affected_rows($con);
+}
+
+// ubah data user
+function ubah($data)
+{
+    global $con;
+
+    //ambil data
+    $id = $data["id"];
+    $name = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag html pada form
+    $email = htmlspecialchars($data["email"]);
+    $contact = htmlspecialchars($data["telp"]);
+    $city = htmlspecialchars($data["city"]);
+    $address = htmlspecialchars($data["alamat"]);
+
+    // query insert data
+    $query = "UPDATE users SET 
+                name     = '$name', 
+                email    = '$email', 
+                contact   = '$contact', 
+                city = '$city',
+                address = '$address'
+            WHERE id = $id
+                ";
+
+    mysqli_query($con, $query);
+    return mysqli_affected_rows($con);
+}
+
+// hapus produk
+function hapus_produk($id)
+{
+    global $con;
+    mysqli_query($con, "DELETE FROM items WHERE id = $id");
+    return mysqli_affected_rows($con);
+}
+
+// ubah produk
+function ubah_produk($data)
+{
+    global $con;
+
+    //ambil data
+    $id = $data["id"];
+    $name = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag html pada form
+    $price = htmlspecialchars($data["price"]);
+
+    // query insert data
+    $query = "UPDATE items SET 
+                name     = '$name', 
+                price    = '$price'
+            WHERE id = $id
+                ";
+
+    mysqli_query($con, $query);
     return mysqli_affected_rows($con);
 }

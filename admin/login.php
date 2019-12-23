@@ -2,12 +2,12 @@
 session_start();
 require 'function.php';
 
-if (isset($_SESSION["submit"])) {
-    header("Location: index.php");
+if (isset($_SESSION["login"])) {
+    header("Location: cek_login.php");
     exit;
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["login"])) {
 
     $username = $_POST["email"];
     $password = $_POST["pass"];
@@ -20,8 +20,9 @@ if (isset($_POST["submit"])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["pass_admin"])) {
             // set session
-            $_SESSION["submit"] = true;
+            $_SESSION["login"] = true;
             $_SESSION["email"] = $username;
+            $_SESSION["password"] = $password;
 
             // cek remember me
             // if (isset($_POST["remember"])) {
@@ -30,7 +31,7 @@ if (isset($_POST["submit"])) {
             //     setcookie('key', hash('sha256', $row['username']), time() + 60);
             // }
 
-            header("Location: index.php");
+            header("Location: cek_login.php");
             exit;
         }
     }
@@ -76,7 +77,7 @@ if (isset($_POST["submit"])) {
                 <small class="create-account">
                     <a href="regist.php">Don't have account? create here</a></small>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="login">Submit</button>
         </div>
     </form>
     <!-- //*end form login admin -->
