@@ -53,6 +53,9 @@ $users = query("SELECT * FROM items");
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+  <!-- //*myCSS -->
+  <link rel="stylesheet" href="css/style.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -389,6 +392,9 @@ $users = query("SELECT * FROM items");
           Halaman Produk
         </h1>
       </section>
+      <div class="add-button">
+        <a href="tambah_produk.php"><button type="button" class="btn btn-block btn-primary btn-flat">Tambah Barang +</button></a>
+      </div>
 
       <!-- Main content -->
       <div class="content">
@@ -399,6 +405,7 @@ $users = query("SELECT * FROM items");
                 <th scope="col">No</th>
                 <th scope="col">Nama Barang</th>
                 <th scope="col">Harga</th>
+                <th scope="col">Gambar</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -409,6 +416,7 @@ $users = query("SELECT * FROM items");
                   <td><?= $i ?></td>
                   <td><?= $user["name"]; ?></td>
                   <td>Rp <?= $user["price"]; ?></td>
+                  <td><img src="../img/<?= $user["image"]; ?>" width="50"></td>
                   <td>
                     <a href="ubah_produk.php?id=<?= $user["id"]; ?>">ubah</a> |
                     <a href="hapus_produk.php?id=<?= $user["id"]; ?>" onclick=" return confirm('yakin dihapus?'); ">hapus</a>

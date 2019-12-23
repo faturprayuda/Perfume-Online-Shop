@@ -20,3 +20,9 @@
 .box-footer .btn-danger {
     margin-top: -100px;
 }
+
+/* *form product */
+.add-button {
+    width: 168px;
+    margin: 10px 0 10px 17px;
+}

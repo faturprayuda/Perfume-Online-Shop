@@ -2,40 +2,40 @@
 session_start();
 require 'function.php';
 
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: login.php");
     exit;
 }
 
-// ambil data di url
-$id = $_GET["id"];
-// query data mahasiswa berdasarkan id
-$user = query("SELECT * FROM items WHERE id = $id")[0];
-
-
-
 //cek tombol submit
 if (isset($_POST["submit"])) {
 
-    //cek update data / debugging mysql
-    if (ubah_produk($_POST) > 0) {
+    //cek insert data / debugging mysql
+    if (tambah_produk($_POST) > 0) {
         echo "
         <script> 
-            alert('data berhasil diubah!');
-            document.location.href = 'product.php';
+            alert('data berhasil dimasukkan!');
+            document.location.href = 'tambah_produk.php';
         </script>
         ";
     } else {
         echo "
         <script> 
-            alert('data gagal diubah!');
-            document.location.href = 'product.php';
+            alert('data gagal dimasukkan!');
+            document.location.href = 'tambah_produk.php';
         </script>
         ";
     }
 }
 
 ?>
+
+
+
+
+
+
+
 
 
 
@@ -420,21 +420,19 @@ if (isset($_POST["submit"])) {
                             </div>
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form role="form" action="" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id" value="<?= $user["id"]; ?>">
-                                <input type="hidden" name="gambarLama" value="<?= $user["image"]; ?>">
+                            <form role="form" action="" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="id">
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama" placeholder="Enter Name" name="nama" value="<?= $user["name"]; ?>">
+                                        <label for="nama">Nama Barang</label>
+                                        <input type="text" class="form-control" id="nama" placeholder="Enter Name" name="nama">
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Harga</label>
-                                        <input type="price" class="form-control" id="price" placeholder="Enter Price" name="price" value="<?= $user["price"]; ?>">
+                                        <input type="text" class="form-control" id="price" placeholder="Enter Price" name="price">
                                     </div>
                                     <div class="form-group">
-                                        <label for="image">Foto Barang</label><br>
-                                        <img src="../img/<?= $user["image"]; ?>" width="180px"> <br><br>
+                                        <label for="image">Foto Barang</label>
                                         <input type="file" id="image" name="image">
                                     </div>
                                     <!-- /.box-body -->

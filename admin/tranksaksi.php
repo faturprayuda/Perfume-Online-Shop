@@ -6,18 +6,13 @@ require 'function.php';
 if (!isset($_SESSION["admin"])) {
   header("Location: login.php");
   exit;
-} else {
-  $user = $_SESSION["email"];
-
-  $result = mysqli_query($con, "SELECT nama_admin FROM admin WHERE email_admin = '$user'");
-
-  if (mysqli_num_rows($result) === 1) {
-    $row = mysqli_fetch_assoc($result);
-    $name = $row["nama_admin"];
-  }
 }
 
-$users = query("SELECT * FROM users_items");
+$users = query("SELECT * FROM users_items 
+                INNER JOIN users 
+                ON users_items.user_id = users.id
+                INNER JOIN items 
+                ON users_items.user_id = items.id");
 
 ?>
 
@@ -407,8 +402,8 @@ $users = query("SELECT * FROM users_items");
               <?php foreach ($users as $user) : ?>
                 <tr>
                   <td><?= $i ?></td>
-                  <td><?= $user["user_id"]; ?></td>
-                  <td><?= $user["item_id"]; ?></td>
+                  <td><?= $user["email"]; ?></td>
+                  <td><?= $user["name"]; ?></td>
                   <td><?= $user["status"]; ?></td>
                   <td>
                     <a href="#">ubah</a> |

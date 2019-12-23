@@ -105,14 +105,92 @@ function ubah_produk($data)
     $id = $data["id"];
     $name = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag html pada form
     $price = htmlspecialchars($data["price"]);
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+    // cek user mengubah gambar atau tidak
+    if ($_FILES['image']['error'] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+    }
 
     // query insert data
     $query = "UPDATE items SET 
                 name     = '$name', 
-                price    = '$price'
+                price    = '$price',
+                image    = '$gambar'
             WHERE id = $id
                 ";
 
     mysqli_query($con, $query);
     return mysqli_affected_rows($con);
+}
+
+// Tambah produk
+function tambah_produk($data)
+{
+    global $con;
+
+    //ambil data
+    $nama = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag htl pada form
+    $price = htmlspecialchars($data["price"]);
+
+    // upload gambar
+    $gambar = upload();
+    if (!$gambar) {
+        return false;
+    }
+
+    // query insert data
+    $query = "INSERT INTO items VALUES ('','$nama','$price','$gambar')";
+
+    mysqli_query($con, $query);
+
+    return mysqli_affected_rows($con);
+}
+
+
+function upload()
+{
+    $namaFile = $_FILES['image']['name'];
+    $sizeFile = $_FILES['image']['size'];
+    $error = $_FILES['image']['error'];
+    $tmpname = $_FILES['image']['tmp_name'];
+
+    // cek gambar yang diupload
+    if ($error === 4) {
+        echo "<script>
+                alert('pilih gambar terlebih dahulu');
+                </script>";
+        return false;
+    }
+
+    //cek jenis file yg diupload
+    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+                alert('file yg anda upload bukan gambar');
+                </script>";
+        return false;
+    }
+
+    // cek ukuran file gambar
+    if ($sizeFile > 2000000) {
+        echo "<script>
+                alert('ukuran tidak boleh lebih 1MB');
+                </script>";
+        return false;
+    }
+
+    // jika lolos pengecekkan akan di upload
+    //generate nama gambar baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpname, '../img/' . $namaFileBaru);
+    return $namaFileBaru;
 }
