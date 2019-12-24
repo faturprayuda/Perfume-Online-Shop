@@ -12,7 +12,7 @@ $users = query("SELECT * FROM users_items
                 INNER JOIN users 
                 ON users_items.user_id = users.id
                 INNER JOIN items 
-                ON users_items.user_id = items.id");
+                ON users_items.item_id = items.id");
 
 ?>
 
