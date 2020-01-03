@@ -44,7 +44,7 @@ $users = query("SELECT * FROM items");
                     <div class="col-md-3 col-sm-6">
                         <div class="thumbnail">
                             <a href="cart.php">
-                                <img src="../img/<?= $user["image"]; ?>">
+                                <img src="img/<?= $user["image"]; ?>">
                             </a>
                             <center>
                                 <div class="caption">

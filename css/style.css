@@ -72,3 +72,16 @@ html {
         font-size: 26px;
     }
 }
+
+.thumbnail img {
+    width: 250px;
+}
+
+.caption {
+    margin-top: auto;
+}
+
+.thumbnail {
+    padding: 10px;
+    height: 500px;
+}
