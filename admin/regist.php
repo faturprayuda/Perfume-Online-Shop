@@ -78,7 +78,7 @@ if (isset($_POST["register"])) {
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Ubah Data User
+                Form Regsitrasi Admin
             </h1>
         </section>
 
