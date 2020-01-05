@@ -83,8 +83,8 @@ if ($no_of_user_products == 0) {
         <footer class="footer">
             <div class="container">
                 <center>
-                    <p>Copyright &copy <a href="https://projectworlds.in">Projectworlds</a> Store. All Rights Reserved.</p>
-                    <p>This website is developed by Yugesh Verma</p>
+                    <p>Copyright &copy <a href="#">Perfume Elegant</a> Store. All Rights Reserved.</p>
+                    <p>This website is developed by Egie, Aldi, & Fatur</p>
                 </center>
             </div>
         </footer>

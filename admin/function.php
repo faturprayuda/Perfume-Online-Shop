@@ -105,6 +105,7 @@ function ubah_produk($data)
     $id = $data["id"];
     $name = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag html pada form
     $price = htmlspecialchars($data["price"]);
+    $desc = htmlspecialchars($data["desc"]);
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
     // cek user mengubah gambar atau tidak
@@ -116,10 +117,11 @@ function ubah_produk($data)
 
     // query insert data
     $query = "UPDATE items SET 
-                name     = '$name', 
-                price    = '$price',
-                image    = '$gambar'
-            WHERE id = $id
+                name        = '$name', 
+                price       = '$price',
+                image       = '$gambar',
+                deskripsi   = '$desc'
+                WHERE id = $id
                 ";
 
     mysqli_query($con, $query);
@@ -134,6 +136,7 @@ function tambah_produk($data)
     //ambil data
     $nama = htmlspecialchars($data["nama"]); //untuk menghindari penggunaan tag htl pada form
     $price = htmlspecialchars($data["price"]);
+    $desc = htmlspecialchars($data["desc"]);
 
     // upload gambar
     $gambar = upload();
@@ -142,7 +145,7 @@ function tambah_produk($data)
     }
 
     // query insert data
-    $query = "INSERT INTO items VALUES ('','$nama','$price','$gambar')";
+    $query = "INSERT INTO items VALUES ('','$nama','$price','$gambar','$desc')";
 
     mysqli_query($con, $query);
 

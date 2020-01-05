@@ -34,8 +34,8 @@ $users = query("SELECT * FROM items");
         ?>
         <div class="container">
             <div class="jumbotron">
-                <h1>Welcome to our Projectworlds Store!</h1>
-                <p>We have the best cameras, watches and shirts for you. No need to hunt around, we have all in one place.</p>
+                <h1>Welcome to our Perfume Elegant Store!</h1>
+                <p>We have the best Perfume for you. No need to hunt around, we have all in one place.</p>
             </div>
         </div>
         <div class="container">
@@ -43,7 +43,7 @@ $users = query("SELECT * FROM items");
                 <?php foreach ($users as $user) : ?>
                     <div class="col-md-3 col-sm-6">
                         <div class="thumbnail">
-                            <a href="cart.php">
+                            <a href="view.php?id=<?= $user["id"]; ?>">
                                 <img src="img/<?= $user["image"]; ?>">
                             </a>
                             <center>
@@ -73,8 +73,8 @@ $users = query("SELECT * FROM items");
             <footer class="footer">
                 <div class="container">
                     <center>
-                        <p>Copyright &copy <a href="https://projectworlds.in">Projectworlds</a> Store. All Rights Reserved.</p>
-                        <p>This website is developed by Yugesh Verma</p>
+                        <p>Copyright &copy <a href="#">Perfume Elegant</a> Store. All Rights Reserved.</p>
+                        <p>This website is developed by Egie, Aldi, & Fatur</p>
                     </center>
                 </div>
             </footer>

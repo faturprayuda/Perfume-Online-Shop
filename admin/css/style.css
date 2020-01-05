@@ -12,6 +12,10 @@
     font-size: 15px;
 }
 
+.login {
+    margin-bottom: 20px;
+}
+
 /* *form regist */
 .box-footer .btn-primary {
     margin-left: 443px;

@@ -429,6 +429,10 @@ if (isset($_POST["submit"])) {
                                         <input type="text" class="form-control" id="nama" placeholder="Enter Name" name="nama" value="<?= $user["name"]; ?>">
                                     </div>
                                     <div class="form-group">
+                                        <label for="desc">Deskripsi Barang</label>
+                                        <input type="text" class="form-control" id="desc" placeholder="Enter Deskripsi" name="desc" value="<?= $user["deskripsi"]; ?>">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="price">Harga</label>
                                         <input type="price" class="form-control" id="price" placeholder="Enter Price" name="price" value="<?= $user["price"]; ?>">
                                     </div>

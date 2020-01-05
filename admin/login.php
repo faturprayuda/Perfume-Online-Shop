@@ -61,6 +61,7 @@ if (isset($_POST["login"])) {
     <!-- //*form login admin -->
     <form action="" method="POST">
         <div class="container">
+            <h3 class="login">Admin Login</h3>
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
@@ -68,10 +69,6 @@ if (isset($_POST["login"])) {
             <div class="form-group">
                 <label for="pass">Password</label>
                 <input type="password" class="form-control" id="pass" name="pass">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <div class="form-akun">
                 <small class="create-account">

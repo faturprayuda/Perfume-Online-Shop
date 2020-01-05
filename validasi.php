@@ -2,13 +2,13 @@
 session_start();
 require 'connection.php';
 if (!isset($_SESSION['email'])) {
-    header('location:index.php');
-} else {
-    $user_id = $_GET['id'];
-    $confirm_query = "update users_items set status='Confirmed' where user_id=$user_id";
-    $confirm_query_result = mysqli_query($con, $confirm_query) or die(mysqli_error($con));
+    header('location: login.php');
 }
+$user_id = $_SESSION['id'];
+
+
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +39,13 @@ if (!isset($_SESSION['email'])) {
                     <div class="panel panel-primary">
                         <div class="panel-heading"></div>
                         <div class="panel-body">
-                            <p>Your order is confirmed. Thank you for shopping with us. <a href="delete_all_product.php">Click here</a> to purchase any other item.</p>
+                            <p>For complete the transacton, please input the recipt image</p>
+                            <form role="form" action="" method="post" enctype="multipart/form-data">
+                                <input type="file" name="validate">
+                                <small>(maks 2MB)</small>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -48,8 +54,8 @@ if (!isset($_SESSION['email'])) {
         <footer class="footer">
             <div class="container">
                 <center>
-                    <p>Copyright &copy <a href="#">Perfume Elegant</a> Store. All Rights Reserved.</p>
-                    <p>This website is developed by Egie, Aldi, & Fatur</p>
+                    <p>Copyright &copy <a href="https://projectworlds.in">Projectworlds</a> Store. All Rights Reserved.</p>
+                    <p>This website is developed by Yugesh Verma</p>
                 </center>
             </div>
         </footer>

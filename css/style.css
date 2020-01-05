@@ -85,3 +85,28 @@ html {
     padding: 10px;
     height: 500px;
 }
+
+.thumbnail-view img {
+    width: 350px;
+}
+
+.chart {
+    margin-top: 20px;
+    padding: 15px;
+    border-style: ridge;
+}
+
+.slogan h3 {
+    margin-top: 50px;
+    font-family: 'Cabin', sans-serif;
+    font-size: 50px;
+}
+
+#sloganImage {
+    padding-top: 75px;
+    padding-bottom: 300px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/img_slogan.jpg);
+    background-size: cover;
+}
