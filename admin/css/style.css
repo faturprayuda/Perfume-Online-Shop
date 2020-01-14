@@ -1,0 +1,32 @@
+/* *formlogin */
+.container {
+    margin-top: 130px;
+    padding: 50px 10px;
+    width: 450px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.form-akun {
+    margin: -10px 0 30px 0;
+    font-size: 15px;
+}
+
+.login {
+    margin-bottom: 20px;
+}
+
+/* *form regist */
+.box-footer .btn-primary {
+    margin-left: 443px;
+}
+
+.box-footer .btn-danger {
+    margin-top: -100px;
+}
+
+/* *form product */
+.add-button {
+    width: 168px;
+    margin: 10px 0 10px 17px;
+}
